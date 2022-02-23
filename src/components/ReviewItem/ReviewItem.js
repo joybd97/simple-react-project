@@ -1,8 +1,8 @@
 import React from 'react';
 
 const ReviewItem = (props) => {
-    console.log(props);
-    const {name,quantity} = props.product;
+    //console.log(props);
+    const {name,quantity,key,price} = props.product;
     const style = {
         borderBottom: '1px solid gray',
         marginBottom: '5px',
@@ -14,8 +14,9 @@ const ReviewItem = (props) => {
         <div style={style} className="review-item">
             <h4 className="product-name" >{name}</h4>
             Quantity : {quantity}
+            <p> <small>$ {price} </small></p>
             <br /> <br />
-            <button className="cart-btn">Remove</button>
+            <button className="cart-btn" onClick={()=> props.handelRemove(key)}>Remove</button>
         </div>
     );
 };

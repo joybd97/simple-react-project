@@ -14,11 +14,26 @@ const Shop = () => {
     const [cart,setCart]=useState([]);
 
     const handelProduct = (product) =>{
-        console.log('product added',product);
-        const newCart =[...cart,product];
+        const toBeAdded = product.key;
+        let count =1;
+        let newCart;
+        const sameProduct = cart.find(pd => pd.key === product.key);
+        if(sameProduct){
+            count = sameProduct.quantity + 1;
+            sameProduct.quantity = count;
+            const others = cart.filter(p => p.key !== toBeAdded);
+            newCart = [...others, sameProduct];
+
+        }
+        else{
+            product.quantity =1;
+            newCart = [...cart,product];
+        }
+        //count = sameProduct.length;
+        //console.log('product added',product);
+       // const newCart =[...cart,product];
         setCart (newCart);
-        const sameProduct = newCart.filter(pd => pd.key === product.key);
-        const count = sameProduct.length;
+        
         addToDatabaseCart(product.key,count);
     }
 

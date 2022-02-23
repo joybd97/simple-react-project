@@ -7,14 +7,15 @@ const Cart = (props) => {
    let totalPrice =0;
    for (let i=0; i<cart.length; i++){
        const product =cart[i];
-       totalPrice = totalPrice + product.price;
+       totalPrice = totalPrice + product.price * product.quantity;
+       debugger;
    } 
 
    let shipping =0;
    if(totalPrice>=35){
        shipping=0;
    }
-   else if(totalPrice>=15){
+   else if(totalPrice>=15){ 
        shipping = 4.99;
    }
    else if(totalPrice<15 && totalPrice>0){
